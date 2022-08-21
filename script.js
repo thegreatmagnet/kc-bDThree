@@ -274,3 +274,10 @@ var usMap = new Datamap({ // INITIALIZES THE MAP OF THE USA ON TO THE PAGE
         });
     }
 });
+
+var i
+data.forEach(function (i){
+    console.log(i.name)
+    console.log(i.fips)
+    console.log(i.population)
+})
