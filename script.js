@@ -387,18 +387,18 @@ var map = new Datamap({ // INITIALIZES THE MAP OF THE USA ON TO THE PAGE
 
 function getPopulation(years){
     var popByYear = []
-    years.forEach(function (y){
+    years.forEach(function (year){
         var xhttp = new XMLHttpRequest()
-        url = "https://api.census.gov/data/" + y + "/acs/acs5?get=NAME,B01003_001E&for=state"
+        url = `https://api.census.gov/data/${year}/acs/acs5?get=NAME,B01003_001E&for=state`
         xhttp.onload = function() {
             //console.log(y)
             //console.log(JSON.parse(this.responseText))
             popByYear.push(JSON.parse(this.responseText))
-            console.log(popByYear)
         }
         xhttp.open("GET", url)
         xhttp.send()
     })
+    console.log(popByYear)
     return popByYear
 }
 
@@ -407,9 +407,9 @@ function getCarbon(states){
     var apiKey = "08e47fd145ef2607fce2a1442928469e";
     Object.keys(states).forEach(function (state){
         var xhttp = new XMLHttpRequest() 
-        url = "https://api.eia.gov/series/?api_key=" + apiKey + "&series_id=EMISS.CO2-TOTV-TT-TO-" + state + ".A";
+        url = `https://api.eia.gov/series/?api_key=${apiKey}&series_id=EMISS.CO2-TOTV-TT-TO-${state}.A`;
+        console.log(url)
         xhttp.onload = function(){
-            console.log(JSON.parse(this.responseText)) 
             carbonByYear[state] = JSON.parse(this.responseText)
         }
         xhttp.open("GET", url)
